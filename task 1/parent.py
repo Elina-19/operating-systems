@@ -25,4 +25,4 @@ while count != n
         if status != 256:
             fork()
         else:
-        	count = count + 1
+            count = count + 1

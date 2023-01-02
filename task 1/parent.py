@@ -13,16 +13,17 @@ def fork():
         os.execl(sys.executable, sys.executable, "child.py", str(random.randint(5, 10)))
 
 
-n = int(input())
+n = int(sys.argv[1])
 for i in range(n):
     fork()
 
 count = 0
-while count != n
+while count != n:
     pid, status = os.wait()
+    status = os.waitstatus_to_exitcode(status)
     if pid > 0:
         print(f'Parent[{os.getppid()}]: Child with PID {pid} terminated. Exit Status {status}.')
-        if status != 256:
+        if status != 0:
             fork()
         else:
             count = count + 1
